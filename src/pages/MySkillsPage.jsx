@@ -35,6 +35,9 @@ function MySkillsPage() {
 
     if (!user?.is_premium) return null;
 
+    const mySkills = items.filter(s => Number(s.user_id) === Number(user?.id));
+    const othersSkills = items.filter(s => Number(s.user_id) !== Number(user?.id));
+
     return (
         <Container className="mt-5 mb-5">
             <h2>Mes compétences</h2>
@@ -93,16 +96,31 @@ function MySkillsPage() {
                 </Col>
 
                 <Col md={8}>
-                    <h5 className="mb-3">Mes compétences ({items.length})</h5>
+                    <h5 className="mb-3">Mes compétences ({mySkills.length})</h5>
                     {loading && !items.length ? (
                         <Spinner animation="border" variant="primary" />
-                    ) : items.length === 0 ? (
+                    ) : mySkills.length === 0 ? (
                         <p className="text-muted">Aucune compétence pour le moment.</p>
                     ) : (
                         <Row xs={1} sm={2} className="g-3">
-                            {items.map((skill, index) => (
+                            {mySkills.map((skill, index) => (
                                 <Col key={skill.id ?? index}>
                                     <SkillCard skill={skill} />
+                                </Col>
+                            ))}
+                        </Row>
+                    )}
+
+                    <hr className="my-4" />
+
+                    <h5 className="mb-3">Compétences des autres membres ({othersSkills.length})</h5>
+                    {othersSkills.length === 0 ? (
+                        <p className="text-muted">Aucune compétence proposée par d'autres membres.</p>
+                    ) : (
+                        <Row xs={1} sm={2} className="g-3">
+                            {othersSkills.map((skill, index) => (
+                                <Col key={skill.id ?? index}>
+                                    <SkillCard skill={skill} showAuthor />
                                 </Col>
                             ))}
                         </Row>

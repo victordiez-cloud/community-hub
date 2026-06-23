@@ -27,6 +27,9 @@ function MainNavbar() {
 
         <Navbar.Collapse id="main-nav">
           <Nav className="ms-auto align-items-center gap-1">
+            <Nav.Link as={Link} to="/events" className={isActive("/events") ? "active" : ""}>
+              Événements
+            </Nav.Link>
             <Nav.Link as={Link} to="/contact" className={isActive("/contact") ? "active" : ""}>
               Contact
             </Nav.Link>
@@ -37,18 +40,23 @@ function MainNavbar() {
                   Dashboard
                 </Nav.Link>
 
+                {Number(user?.user_status_id) === 3 && (
+                  <Nav.Link as={Link} to="/categories" className={isActive("/categories") ? "active" : ""}>
+                    Catégories
+                  </Nav.Link>
+                )}
+
+                <Nav.Link as={Link} to="/contacts" className={isActive("/contacts") ? "active" : ""}>
+                  Contacts
+                </Nav.Link>
+                <Nav.Link as={Link} to="/messages" className={isActive("/messages") ? "active" : ""}>
+                  Messages
+                </Nav.Link>
+
                 {user?.is_premium && (
-                  <>
-                    <Nav.Link as={Link} to="/skills" className={isActive("/skills") ? "active" : ""}>
-                      Compétences
-                    </Nav.Link>
-                    <Nav.Link as={Link} to="/contacts" className={isActive("/contacts") ? "active" : ""}>
-                      Contacts
-                    </Nav.Link>
-                    <Nav.Link as={Link} to="/messages" className={isActive("/messages") ? "active" : ""}>
-                      Messages
-                    </Nav.Link>
-                  </>
+                  <Nav.Link as={Link} to="/skills" className={isActive("/skills") ? "active" : ""}>
+                    Compétences
+                  </Nav.Link>
                 )}
 
                 <div className="d-flex align-items-center gap-2 ms-3">
