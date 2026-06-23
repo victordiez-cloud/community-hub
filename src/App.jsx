@@ -8,6 +8,11 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import PremiumPage from './pages/PremiumPage';
+import MySkillsPage from './pages/MySkillsPage';
+import ContactPage from './pages/ContactPage';
+import ContactsPage from './pages/ContactsPage';
+import MessagesPage from './pages/MessagesPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -25,8 +30,13 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="/dashboard" element={<DashboardPage />} />
+                        <Route path="/premium" element={<PremiumPage />} />
+                        <Route path="/skills" element={<MySkillsPage />} />
+                        <Route path="/contacts" element={<ContactsPage />} />
+                        <Route path="/messages" element={<MessagesPage />} />
                     </Route>
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
